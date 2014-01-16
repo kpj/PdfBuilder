@@ -21,7 +21,7 @@ $pdflatex_cmd "$file"
 cd -
 
 git add "$pdf"
-git commit -m "[pdfupdate] Compiled $file to $pdf" "$pdf"
+git commit -m "pdfupdate - Compiled $file to $pdf" "$pdf"
 git push
 
 cd ..

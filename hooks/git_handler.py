@@ -4,7 +4,7 @@ import http.server, urllib.parse
 
 # latex variables
 compile_substring = "main" # compile .tex file if this substring is present
-suppress_commit = "[pdfupdate]" # don't consider commit if this substring appears
+suppress_commit = "pdfupdate" # don't consider commit if this substring appears
 
 # server variables
 port = 8080
