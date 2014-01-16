@@ -4,6 +4,7 @@ import http.server, urllib.parse
 
 # latex variables
 compile_substring = "main" # compile .tex file if this substring is present
+suppress_commit = "[pdfupdate]" # don't consider commit if this substring appears
 
 # server variables
 port = 8080
@@ -11,9 +12,10 @@ port = 8080
 # helper functions
 def handle_git_request(req):
 	for commit in req["commits"]:
-		stuff = commit["modified"] + commit["added"]
-		for entry in [e for e in stuff if compile_substring in e]:
-			subprocess.call(["./latex_maker.sh", entry])
+		if not suppress_commit in commit["message"]:
+			stuff = commit["modified"] + commit["added"]
+			for entry in [e for e in stuff if compile_substring in e]:
+				subprocess.call(["./latex_maker.sh", entry])
 
 def get_data(sock, con_len):
 	return urllib.parse.unquote(sock.recv(con_len).decode(encoding="UTF-8"))
