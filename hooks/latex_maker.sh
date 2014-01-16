@@ -20,7 +20,7 @@ $pdflatex_cmd "$file"
 $pdflatex_cmd "$file"
 cd -
 
-git add "$pdf"
+git add "$dir/$pdf"
 git commit -m "pdfupdate - Compiled $file to $pdf" "$dir/$pdf"
 git push
 
